@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import data from "@/data/rose.json";
+import { ParagraphBlock } from "@/components/ParagraphBlock";
 
 const ConclusionPage = () => {
   const lines = data.conclusion.split("\n");
@@ -19,9 +20,14 @@ const ConclusionPage = () => {
         </h1>
         <div className="ornament-line w-24 mb-10" />
 
-        <div className="space-y-6 text-base md:text-lg leading-relaxed text-foreground/85 font-light">
+        <div className="space-y-8 text-base md:text-lg leading-relaxed text-foreground/85 font-light">
           {paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
+            <ParagraphBlock
+              key={i}
+              text={p}
+              image={(data as { conclusionImages?: string[] }).conclusionImages?.[i]}
+              index={i}
+            />
           ))}
         </div>
 
