@@ -1,6 +1,7 @@
 import { useParams, Navigate } from "react-router-dom";
 import data from "@/data/rose.json";
 import { StagePager } from "@/components/StagePager";
+import { ParagraphBlock } from "@/components/ParagraphBlock";
 import { useEffect } from "react";
 
 const romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
@@ -43,18 +44,15 @@ const Stage = () => {
 
         <div className="ornament-line w-24 mb-10" />
 
-        <div className="space-y-6 text-base md:text-lg leading-relaxed text-foreground/85 font-light">
+        <div className="space-y-8 text-base md:text-lg leading-relaxed text-foreground/85 font-light">
           {paragraphs.map((p, i) => (
-            <p
+            <ParagraphBlock
               key={i}
-              className={
-                i === 0
-                  ? "first-letter:font-serif-display first-letter:text-5xl first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:leading-none first-letter:text-gold"
-                  : ""
-              }
-            >
-              {p}
-            </p>
+              text={p}
+              image={(stage as { images?: string[] }).images?.[i]}
+              index={i}
+              isFirst={i === 0}
+            />
           ))}
         </div>
 
